@@ -1,0 +1,21 @@
+{
+    "name": "opensourcerefinery/http-kernel",
+	"description": "",
+    "require": {
+        "php": ">=5.4",
+		"symfony/http-kernel": "~2.8",
+    }
+    "autoload": {
+		"psr-4": {
+			"OpenSourceRefinery\\HttpKernel\\":"src/"
+		}
+	},
+	"scripts-dev": {
+		"post-install-cmd": [
+			"vendor/bin/security-checker security:check"
+		],
+		"post-update-cmd": [
+			"vendor/bin/security-checker security:check"
+		]
+	}
+}
