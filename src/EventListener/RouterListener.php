@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Component\HttpKernel\EventListener;
+namespace OpenSourceRefinery\HttpKernel\EventListener;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -44,10 +44,7 @@ class RouterListener implements EventSubscriberInterface
     private $matcher;
     private $context;
     private $logger;
-<<<<<<< HEAD
-=======
     private $debug;
->>>>>>> hotfix/2.8.40.1
     private $request;
     private $requestStack;
 
@@ -61,11 +58,7 @@ class RouterListener implements EventSubscriberInterface
      *
      * @throws \InvalidArgumentException
      */
-<<<<<<< HEAD
-    public function __construct($matcher, $requestStack = null, $context = null, $logger = null)
-=======
     public function __construct($matcher, $requestStack = null, $context = null, $logger = null, $debug = false)
->>>>>>> hotfix/2.8.40.1
     {
         if ($requestStack instanceof RequestContext || $context instanceof LoggerInterface || $logger instanceof RequestStack) {
             $tmp = $requestStack;
@@ -100,7 +93,7 @@ class RouterListener implements EventSubscriberInterface
         $this->context = $context ?: $matcher->getContext();
         $this->requestStack = $requestStack;
         $this->logger = $logger;
-<<<<<<< HEAD
+        $this->debug = $debug;
     }
 
     /**
@@ -119,9 +112,6 @@ class RouterListener implements EventSubscriberInterface
         @trigger_error('The '.__METHOD__.' method is deprecated since Symfony 2.4 and will be made private in 3.0.', E_USER_DEPRECATED);
 
         $this->setCurrentRequest($request);
-=======
-        $this->debug = $debug;
->>>>>>> hotfix/2.8.40.1
     }
 
     /**
@@ -190,11 +180,7 @@ class RouterListener implements EventSubscriberInterface
                 $parameters = $this->matcher->match($request->getPathInfo());
             }
 
-<<<<<<< HEAD
-            if (null !== $this->logger) {
-=======
             if (null !== $this->logger && $this->debug) {
->>>>>>> hotfix/2.8.40.1
                 $this->logger->info(sprintf('Matched route "%s".', isset($parameters['_route']) ? $parameters['_route'] : 'n/a'), array(
                     'route_parameters' => $parameters,
                     'request_uri' => $request->getUri(),
