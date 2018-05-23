@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace OpenSourceRefinery\HttpKernel\EventListener;
+namespace Symfony\Component\HttpKernel\EventListener;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -44,6 +44,10 @@ class RouterListener implements EventSubscriberInterface
     private $matcher;
     private $context;
     private $logger;
+<<<<<<< HEAD
+=======
+    private $debug;
+>>>>>>> hotfix/2.8.40.1
     private $request;
     private $requestStack;
 
@@ -57,7 +61,11 @@ class RouterListener implements EventSubscriberInterface
      *
      * @throws \InvalidArgumentException
      */
+<<<<<<< HEAD
     public function __construct($matcher, $requestStack = null, $context = null, $logger = null)
+=======
+    public function __construct($matcher, $requestStack = null, $context = null, $logger = null, $debug = false)
+>>>>>>> hotfix/2.8.40.1
     {
         if ($requestStack instanceof RequestContext || $context instanceof LoggerInterface || $logger instanceof RequestStack) {
             $tmp = $requestStack;
@@ -92,6 +100,28 @@ class RouterListener implements EventSubscriberInterface
         $this->context = $context ?: $matcher->getContext();
         $this->requestStack = $requestStack;
         $this->logger = $logger;
+<<<<<<< HEAD
+    }
+
+    /**
+     * Sets the current Request.
+     *
+     * This method was used to synchronize the Request, but as the HttpKernel
+     * is doing that automatically now, you should never call it directly.
+     * It is kept public for BC with the 2.3 version.
+     *
+     * @param Request|null $request A Request instance
+     *
+     * @deprecated since version 2.4, to be removed in 3.0.
+     */
+    public function setRequest(Request $request = null)
+    {
+        @trigger_error('The '.__METHOD__.' method is deprecated since Symfony 2.4 and will be made private in 3.0.', E_USER_DEPRECATED);
+
+        $this->setCurrentRequest($request);
+=======
+        $this->debug = $debug;
+>>>>>>> hotfix/2.8.40.1
     }
 
     /**
@@ -160,7 +190,11 @@ class RouterListener implements EventSubscriberInterface
                 $parameters = $this->matcher->match($request->getPathInfo());
             }
 
+<<<<<<< HEAD
             if (null !== $this->logger) {
+=======
+            if (null !== $this->logger && $this->debug) {
+>>>>>>> hotfix/2.8.40.1
                 $this->logger->info(sprintf('Matched route "%s".', isset($parameters['_route']) ? $parameters['_route'] : 'n/a'), array(
                     'route_parameters' => $parameters,
                     'request_uri' => $request->getUri(),
