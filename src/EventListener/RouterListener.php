@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Symfony package.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace OpenSourceRefinery\HttpKernel\EventListener;
 
 use Psr\Log\LoggerInterface;
@@ -113,23 +104,7 @@ class RouterListener implements EventSubscriberInterface
         $this->setCurrentRequest($request);
     }
 
-    /**
-     * Sets the current Request.
-     *
-     * This method was used to synchronize the Request, but as the HttpKernel
-     * is doing that automatically now, you should never call it directly.
-     * It is kept public for BC with the 2.3 version.
-     *
-     * @param Request|null $request A Request instance
-     *
-     * @deprecated since version 2.4, to be removed in 3.0.
-     */
-    public function setRequest(Request $request = null)
-    {
-        @trigger_error('The '.__METHOD__.' method is deprecated since Symfony 2.4 and will be made private in 3.0.', E_USER_DEPRECATED);
-
-        $this->setCurrentRequest($request);
-    }
+    
 
     private function setCurrentRequest(Request $request = null)
     {
