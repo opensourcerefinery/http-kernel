@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Symfony package.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace OpenSourceRefinery\HttpKernel\EventListener;
 
 use Psr\Log\LoggerInterface;
@@ -112,6 +103,8 @@ class RouterListener implements EventSubscriberInterface
 
         $this->setCurrentRequest($request);
     }
+
+    
 
     private function setCurrentRequest(Request $request = null)
     {
