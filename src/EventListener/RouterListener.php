@@ -56,7 +56,7 @@ class RouterListener implements EventSubscriberInterface
             $logger = $context;
             $context = $tmp;
 
-            @trigger_error('The '.__METHOD__.' method now requires a RequestStack to be given as second argument as '.__CLASS__.'::setRequest method will not be supported anymore in 3.0.', E_USER_DEPRECATED);
+            // @trigger_error('The '.__METHOD__.' method now requires a RequestStack to be given as second argument as '.__CLASS__.'::setRequest method will not be supported anymore in 3.0.', E_USER_DEPRECATED);
         } elseif (!$requestStack instanceof RequestStack) {
             @trigger_error('The '.__METHOD__.' method now requires a RequestStack instance as '.__CLASS__.'::setRequest method will not be supported anymore in 3.0.', E_USER_DEPRECATED);
         }
@@ -104,7 +104,7 @@ class RouterListener implements EventSubscriberInterface
         $this->setCurrentRequest($request);
     }
 
-    
+
 
     private function setCurrentRequest(Request $request = null)
     {
