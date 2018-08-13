@@ -50,34 +50,34 @@ class RouterListener implements EventSubscriberInterface
      */
     public function __construct($matcher, $requestStack = null, $context = null, $logger = null, $debug = false)
     {
-        if ($requestStack instanceof RequestContext || $context instanceof LoggerInterface || $logger instanceof RequestStack) {
-            $tmp = $requestStack;
-            $requestStack = $logger;
-            $logger = $context;
-            $context = $tmp;
-
-            @trigger_error('The '.__METHOD__.' method now requires a RequestStack to be given as second argument as '.__CLASS__.'::setRequest method will not be supported anymore in 3.0.', E_USER_DEPRECATED);
-        } elseif (!$requestStack instanceof RequestStack) {
-            @trigger_error('The '.__METHOD__.' method now requires a RequestStack instance as '.__CLASS__.'::setRequest method will not be supported anymore in 3.0.', E_USER_DEPRECATED);
-        }
-
-        if (null !== $requestStack && !$requestStack instanceof RequestStack) {
-            throw new \InvalidArgumentException('RequestStack instance expected.');
-        }
-        if (null !== $context && !$context instanceof RequestContext) {
-            throw new \InvalidArgumentException('RequestContext instance expected.');
-        }
-        if (null !== $logger && !$logger instanceof LoggerInterface) {
-            throw new \InvalidArgumentException('Logger must implement LoggerInterface.');
-        }
-
-        if (!$matcher instanceof UrlMatcherInterface && !$matcher instanceof RequestMatcherInterface) {
-            throw new \InvalidArgumentException('Matcher must either implement UrlMatcherInterface or RequestMatcherInterface.');
-        }
-
-        if (null === $context && !$matcher instanceof RequestContextAwareInterface) {
-            throw new \InvalidArgumentException('You must either pass a RequestContext or the matcher must implement RequestContextAwareInterface.');
-        }
+        // if ($requestStack instanceof RequestContext || $context instanceof LoggerInterface || $logger instanceof RequestStack) {
+        //     $tmp = $requestStack;
+        //     $requestStack = $logger;
+        //     $logger = $context;
+        //     $context = $tmp;
+        //
+        //     @trigger_error('The '.__METHOD__.' method now requires a RequestStack to be given as second argument as '.__CLASS__.'::setRequest method will not be supported anymore in 3.0.', E_USER_DEPRECATED);
+        // } elseif (!$requestStack instanceof RequestStack) {
+        //     @trigger_error('The '.__METHOD__.' method now requires a RequestStack instance as '.__CLASS__.'::setRequest method will not be supported anymore in 3.0.', E_USER_DEPRECATED);
+        // }
+        //
+        // if (null !== $requestStack && !$requestStack instanceof RequestStack) {
+        //     throw new \InvalidArgumentException('RequestStack instance expected.');
+        // }
+        // if (null !== $context && !$context instanceof RequestContext) {
+        //     throw new \InvalidArgumentException('RequestContext instance expected.');
+        // }
+        // if (null !== $logger && !$logger instanceof LoggerInterface) {
+        //     throw new \InvalidArgumentException('Logger must implement LoggerInterface.');
+        // }
+        //
+        // if (!$matcher instanceof UrlMatcherInterface && !$matcher instanceof RequestMatcherInterface) {
+        //     throw new \InvalidArgumentException('Matcher must either implement UrlMatcherInterface or RequestMatcherInterface.');
+        // }
+        //
+        // if (null === $context && !$matcher instanceof RequestContextAwareInterface) {
+        //     throw new \InvalidArgumentException('You must either pass a RequestContext or the matcher must implement RequestContextAwareInterface.');
+        // }
 
         $this->matcher = $matcher;
         $this->context = $context ?: $matcher->getContext();
@@ -104,7 +104,7 @@ class RouterListener implements EventSubscriberInterface
         $this->setCurrentRequest($request);
     }
 
-    
+
 
     private function setCurrentRequest(Request $request = null)
     {
